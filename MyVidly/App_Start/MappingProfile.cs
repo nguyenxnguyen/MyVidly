@@ -13,7 +13,10 @@ namespace MyVidly.App_Start
         public MappingProfile()
         {
             Mapper.CreateMap<Customer, CustomerDto>();
-            Mapper.CreateMap<CustomerDto, Customer>();
+            Mapper.CreateMap<CustomerDto, Customer>().ForMember(x => x.Id, y => y.Ignore());
+
+            Mapper.CreateMap<Movie, MovieDto>();
+            Mapper.CreateMap<MovieDto, Movie>().ForMember(x => x.Id, y => y.Ignore());
         }
     }
 }

@@ -7,18 +7,19 @@ using MyVidly.Models;
 
 namespace MyVidly.Dtos
 {
-    public class CustomerDto
+    public class MovieDto
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Please enter Name")]
-        [StringLength(255)]
+        [Required]
         public string Name { get; set; }
 
-        public DateTime? Birthday { get; set; }
+        [Required]
+        public byte GenreId { get; set; }
 
-        public bool IsSubscribedToNewsLetter { get; set; }
+        public DateTime ReleaseDate { get; set; }
 
-        public byte MembershipTypeId { get; set; }
+        [Range(1, 20)]
+        public byte Inventory { get; set; }
     }
 }
