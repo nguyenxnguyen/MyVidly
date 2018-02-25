@@ -25,18 +25,13 @@ namespace MyVidly.Controllers
 
         public ActionResult Index()
         {
-            var customers = _context.Customers?.Include(c => c.MemberShipType).ToList();
-            var viewModel = new CustomerViewModel
-            {
-                Customers = customers
-            };
-            return View(viewModel);
+            return View();
         }
         
         // GET: Customer
         public ActionResult Details(int id)
         {
-            var customer = _context.Customers?.Include(c => c.MemberShipType).SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers?.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -61,7 +56,6 @@ namespace MyVidly.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
         {
-
             if (!ModelState.IsValid)
             {
                 var viewModel = new CustomerFormViewModel
@@ -85,7 +79,6 @@ namespace MyVidly.Controllers
                 customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
 
             }
-
             try
             {
                 _context.SaveChanges();

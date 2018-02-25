@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Data.Entity;
 using System.Web.Http.Results;
 using AutoMapper;
 using MyVidly.Dtos;
@@ -23,7 +24,10 @@ namespace MyVidly.Controllers.Api
         // GET /api/movies
         public IHttpActionResult GetMovies()
         {
-            var movies = _context.Movies?.ToList().Select(Mapper.Map<Movie, MovieDto>);
+            var movies = _context.Movies?
+                .Include(m => m.Genre)
+                .ToList()
+                .Select(Mapper.Map<Movie, MovieDto>);
             if (movies == null)
                 return NotFound();
 

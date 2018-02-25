@@ -19,7 +19,7 @@ namespace MyVidly.Models
 
         public bool IsSubscribedToNewsLetter { get; set; }
 
-        public MembershipType MemberShipType { get; set; }
+        public MembershipType MembershipType { get; set; }
 
         [Display(Name = "Membership Type")]
         [Min18YearsIfAMember]
